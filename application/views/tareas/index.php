@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/styles.css') ?>">
+    <title>Document</title>
+</head>
+<body>
+    <?php foreach ($tareas as $tarea):?>
+        <h4><?php echo "Tareas: id= $tarea->id, titulo= $tarea->titulo, descripcion= $tarea->descripcion, estatus=$tarea->estatus, fecha=$tarea->fecha"; ?></h4>
+    <?php endforeach;?>
+</body>
+</html>

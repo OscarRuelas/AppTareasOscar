@@ -16,12 +16,19 @@ class Tareas extends CI_Controller {
 			'tareas' => $tareas
 		];
 
-		$this->load->view('tareas/index', $mainData);
+		$this->load->view('layouts/main', $mainData);
 	}
 
 	//show -> muestra una sola tarea -> VISTA
 	public function show($id){
-		echo "RUTA Tareas/show/$id";
+
+		$tarea = $this->tareas_model->get_only_tarea($id);
+
+		$obtenertarea = [
+			"tarea" => $tarea
+		];
+
+		$this->load->view('tareas/obtenertarea', $obtenertarea);
 	}
 
 	//create -> entrada de datos para una nueva tarea (from) -> VISTA

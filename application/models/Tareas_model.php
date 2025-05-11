@@ -14,7 +14,7 @@ class Tareas_model extends CI_Model {
     // }
 
     public function get_all_tareas(){
-        $query = $this->db->query('SELECT * FROM tareas');
+        $query = $this->db->query('SELECT * FROM tareas ORDER BY id DESC');
         return $query->result();
     }
 
@@ -23,7 +23,20 @@ class Tareas_model extends CI_Model {
         return $query->row(); // Usamos row() porque esperamos un solo resultado
     }
 
-    public function add_tarea(){
-        $query = $this->db->query('SELECT * FROM tareas WHERE id = ?');
+    public function add_tarea($tareas_data){
+        $query = $this->db->insert('tareas', $tareas_data);
+    }
+
+    public function get_estatus(){
+        $query = $this->db->query('SELECT * FROM estatus');
+        return $query->result();
+    }
+
+    public function update_tarea($id, $tarea_data){
+        $this->db->update('tareas', $tarea_data, ['id' => $id]);
+    }
+
+    public function delete_tarea($id){
+        $this->db->delete('tareas', ['id' => $id]);
     }
 }

@@ -8,14 +8,22 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown link
+                        Tareas
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="<?php echo base_url('tareas'); ?>">Listado de tareas</a></li>
                         <li><a class="dropdown-item" href="<?php echo base_url('tareas/create'); ?>">Crear tareas</a></li>
                     </ul>
                 </li>
-            <button onclick="changeTheme()" class="btn rounded-fill"><i id="dl-icon" class="bi bi-moon-fill"></i></button>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        usuarios
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="<?php echo base_url('Auth/logout'); ?>">Cerrar sesion</a></li>
+                    </ul>
+                </li>
+            <!-- <button onclick="changeTheme()" class="btn rounded-fill"><i id="dl-icon" class="bi bi-moon-fill"></i></button> -->
             </ul>
             </div>
 

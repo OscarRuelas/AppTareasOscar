@@ -1,3 +1,5 @@
-h1{
-    color: rebeccapurple;
+.card{
+    display: flex;
+  flex-direction: column; /* Para que los elementos se apilen verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
 }

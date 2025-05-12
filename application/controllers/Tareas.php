@@ -9,19 +9,66 @@ class Tareas extends CI_Controller {
 	//index -> muestra las tareas -> VISTA
 	public function index(){
 
+		if($this->session->userdata('session_token') == null) {
+            show_error('Acceso no autorizado, Favor de iniciar sesión');
+        }
+
+		// echo $this->tareas_model->paginacion_tareas(10, 0);
+
 		$tareas = $this->tareas_model->get_all_tareas();
+		// $tareas = $this->tareas_model->paginacion_tareas(2, 0);
 
 		$mainData = [
 			'title' => 'Tareas por hacer',
 			'innerViewPath' => 'tareas/index',
+			// 'session_token' => $this->session->userdata('session_token'),
 			'tareas' => $tareas
 		];
 
 		$this->load->view('layouts/main', $mainData);
 	}
 
+	public function buscar_form(){
+
+		if($this->session->userdata('session_token') == null) {
+            show_error('Acceso no autorizado, Favor de iniciar sesión');
+        }
+
+		// echo $this->tareas_model->paginacion_tareas(10, 0);
+
+		$tareas = $this->tareas_model->get_all_tareas();
+		// $tareas = $this->tareas_model->paginacion_tareas(2, 0);
+
+		$mainData = [
+			'title' => 'Tareas por hacer',
+			'innerViewPath' => 'tareas/index',
+			// 'session_token' => $this->session->userdata('session_token'),
+			'tareas' => $tareas
+		];
+
+		$this->load->view('layouts/main', $mainData);
+	}
+
+	public function buscar($titulo){
+
+		//$titulo=$this->input->post('titulo');
+		
+		// $titulo = $this->tareas_model->buscar_tareas($buscar_titulo);
+
+		if($titulo){
+			$resultado = $this->tareas_model->buscar_tareas($titulo);
+			echo json_encode($resultado);
+			// $data['tareas'] = $resultado;
+			// $this->load->view('buscar', $data);
+		}
+	}
+
 	//show -> muestra una sola tarea -> VISTA
 	public function show($id){
+
+		if($this->session->userdata('session_token') == null) {
+            show_error('Acceso no autorizado, Favor de iniciar sesión');
+        }
 
 		$tarea = $this->tareas_model->get_only_tarea($id);
 
@@ -39,11 +86,20 @@ class Tareas extends CI_Controller {
 
 	//create -> entrada de datos para una nueva tarea (from) -> VISTA
 	public function create(){
+
+		if($this->session->userdata('session_token') == null) {
+            show_error('Acceso no autorizado, Favor de iniciar sesión');
+        }
+
 		$tareas = $this->tareas_model->get_all_tareas();
+		$usuario = $this->session->userdata('usuario');
+		$estatus = $this->tareas_model->get_asignado_estatus();
 
 		$mainData = [
 			'title' => 'Crear tareas',
-			'innerViewPath' => 'tareas/create'
+			'innerViewPath' => 'tareas/create',
+			'usuario' => $usuario,
+			'estatus' => $estatus
 		];
 
 		$this->load->view('layouts/main', $mainData);
@@ -53,11 +109,19 @@ class Tareas extends CI_Controller {
 
 	public function insert(){
 
+		if($this->session->userdata('session_token') == null) {
+            show_error('Acceso no autorizado, Favor de iniciar sesión');
+        }
+
+		$usuario = $this->session->userdata('usuario');
+
+		$idusuario = $this->tareas_model->get_usuario($usuario);
+
 		$tareas_data = [
-			'idusuario' => $this->input->post('idusuario'),
+			'idusuario' => $idusuario->id,
 			'titulo' => $this->input->post('titulo'),
 			'descripcion' => $this->input->post('descripcion'),
-			'estatus' => $this->input->post('estatus'),
+			'estatus' => 'A',
 			'fecha' => $this->input->post('fecha')
 		];
 
@@ -68,6 +132,10 @@ class Tareas extends CI_Controller {
 
 	//edit -> entrada de datos para actualizar una tarea existente (from) -> VISTA
 	public function edit($id){
+
+		if($this->session->userdata('session_token') == null) {
+            show_error('Acceso no autorizado, Favor de iniciar sesión');
+        }
 		
 		$tarea = $this->tareas_model->get_only_tarea($id);
 		$estatus = $this->tareas_model->get_estatus();
@@ -89,6 +157,10 @@ class Tareas extends CI_Controller {
 	//update -> procesa las nuevos datos de la tarea editada -> PROCESO
 	public function update($id){
 
+		if($this->session->userdata('session_token') == null) {
+            show_error('Acceso no autorizado, Favor de iniciar sesión');
+        }
+
 		$tareas_data = [
 			'idusuario' => $this->input->post('idusuario'),
 			'titulo' => $this->input->post('titulo'),
@@ -103,6 +175,10 @@ class Tareas extends CI_Controller {
 
 	//delete -> borra una tarea -> PROCESO
 	public function delete($id){
+
+		if($this->session->userdata('session_token') == null) {
+            show_error('Acceso no autorizado, Favor de iniciar sesión');
+        }
 
 		$this->tareas_model->delete_tarea($id);
 		redirect("tareas");

@@ -19,14 +19,11 @@
                 <td><?php echo $tarea->descripcion; ?></td>
                 <td><?php echo $tarea->estatus; ?></td>
                 <td><?php echo $tarea->fecha; ?></td>
-                <td>
-                    <a type="button" class="btn btn-outline-warning" href="<?php echo base_url('tareas/edit/') . $tarea->id; ?>">Editar</a>
-                    <form action="<?php echo base_url('tareas/delete/') . $tarea->id; ?>" method="POST">
-                        <button type="submit" class="btn btn-outline-danger">Eliminar</button>
-                    </form>
+                <td class="d-flex gap-2">
+                    <a type="button" class="btn btn-outline-danger" href="<?php echo base_url('tareas')?>">Regresar</a>
                 </td>
             </tr>
-            
         </tbody>
     </table>
 </div>
+

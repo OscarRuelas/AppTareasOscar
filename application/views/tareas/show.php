@@ -20,7 +20,7 @@
                 <td><?php echo $tarea->estatus; ?></td>
                 <td><?php echo $tarea->fecha; ?></td>
                 <td class="d-flex gap-2">
-                    <a type="button" class="btn btn-outline-danger" href="<?php echo base_url('tareas')?>">Regresar</a>
+                    <a type="button" class="btn btn-danger" href="<?php echo base_url('tareas')?>">Regresar</a>
                 </td>
             </tr>
         </tbody>

@@ -14,28 +14,17 @@ class Tareas_model extends CI_Model {
     // }
 
     public function get_all_tareas(){
-        $query = $this->db->query('SELECT * FROM tareas ORDER BY id DESC');
+        $query = $this->db->query('SELECT id, titulo, DATE_FORMAT(fecha, "%d/%m/%Y") as fecha FROM tareas ORDER BY id DESC');
         return $query->result();
     }
 
     public function buscar_tareas($titulo){
-        $query = $this->db->query("SELECT * FROM tareas WHERE titulo LIKE '%{$titulo}%'");
+        $query = $this->db->query("SELECT id, titulo, DATE_FORMAT(fecha, '%d/%m/%Y') as fecha FROM tareas WHERE titulo LIKE '%{$titulo}%'");
         return $query->result();
     }
 
-
-    public function paginacion_tareas($page_size, $offset){
-        $this->db->limit($page_size, $offset);
-        $query = $this->db->get('tareas');
-        return $query->result_array();
-    }
-
-    public function count_tareas(){
-        return $this->db->count_all('tareas');
-    }
-
     public function get_only_tarea($id){
-        $query = $this->db->query('SELECT * FROM tareas WHERE id = ?', array($id));
+        $query = $this->db->query('SELECT t.id, t.titulo, t.descripcion, e.estatus, DATE_FORMAT(t.fecha, "%d/%m/%Y") as fecha FROM tareas t INNER JOIN estatus e ON e.id = t.estatus WHERE t.id = ?', array($id));
         return $query->row(); // Usamos row() porque esperamos un solo resultado
     }
 

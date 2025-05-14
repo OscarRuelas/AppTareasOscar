@@ -59,7 +59,7 @@ class Tareas extends CI_Controller {
 			$resultado = $this->tareas_model->buscar_tareas($titulo);
 			echo json_encode($resultado);
 			// $data['tareas'] = $resultado;
-			// $this->load->view('buscar', $data);
+			// $this->load->view('layouts/main', $data);
 		}
 	}
 

@@ -1,6 +1,6 @@
 <form action="<?php echo base_url('tareas/update/') . $tarea->id; ?>" method="POST">
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingUsuariosDisabled" name="idusario" placeholder="usuario" value="1">
+        <input type="text" class="form-control" id="floatingUsuariosDisabled" name="idusario" placeholder="usuario" value="<?php echo $usuario ?>" disabled >
         <label for="floatingUsuariosDisabled">usuario</label>
     </div>
     <div class="form-floating mb-3">
@@ -8,7 +8,7 @@
         <label for="floatingTitulo">Titulo</label>
     </div>
     <div class="form-floating">
-        <input type="text" class="form-control" id="floatingFecha" name="fecha" placeholder="YYY-MM-DD" value="<?php echo $tarea->fecha ?>">
+        <input type="date" class="form-control" id="floatingFecha" name="fecha" placeholder="YYY-MM-DD" value="<?php echo $tarea->fecha ?>">
         <label for="floatingFecha">fecha</label>
     </div>
     <div class="form-floating">
@@ -18,7 +18,7 @@
     <select class="form-select" name="estatus" aria-label="Default select example">
         <?php if(!empty($estatus)): ?>
                 <?php foreach ($estatus as $item): ?>
-                        <option value="<?php echo $item->id; ?>"><?php echo $item->descripcion; ?></option>
+                        <option value="<?php echo $item->id; ?>"><?php echo $item->estatus; ?></option>
                 <?php endforeach; ?>
                 <?php else: ?>
                         <option>No se encontraron estatus disponibles</option>

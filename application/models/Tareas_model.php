@@ -24,7 +24,7 @@ class Tareas_model extends CI_Model {
     }
 
     public function get_only_tarea($id){
-        $query = $this->db->query('SELECT t.id, t.titulo, t.descripcion, e.estatus, DATE_FORMAT(t.fecha, "%d/%m/%Y") as fecha FROM tareas t INNER JOIN estatus e ON e.id = t.estatus WHERE t.id = ?', array($id));
+        $query = $this->db->query('SELECT t.*, e.estatus FROM tareas t INNER JOIN estatus e ON e.id = t.estatus WHERE t.id = ?', array($id));
         return $query->row(); // Usamos row() porque esperamos un solo resultado
     }
 

@@ -139,6 +139,7 @@ class Tareas extends CI_Controller {
 		
 		$tarea = $this->tareas_model->get_only_tarea($id);
 		$estatus = $this->tareas_model->get_estatus();
+		$usuario = $this->session->userdata('usuario');
 
 		if($tarea == null) {
 			show_404();
@@ -148,6 +149,7 @@ class Tareas extends CI_Controller {
 			'title' => 'Editar tareas #'. $id,
 			'innerViewPath' => 'tareas/edit',
 			"tarea" => $tarea,
+			'usuario' => $usuario,
 			"estatus" => $estatus
 		];
 		$this->load->view('layouts/main', $obtenertarea);

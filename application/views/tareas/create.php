@@ -16,7 +16,7 @@
         <label for="floatingTextareaDescripcion">Comments</label>
     </div>
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingEstatusDisabled" name="estatus" placeholder="Asignado" value="<?php echo $estatus->descripcion ?>" disabled require>
+        <input type="text" class="form-control" id="floatingEstatusDisabled" name="estatus" placeholder="Asignado" value="<?php echo $estatus->estatus ?>" disabled require>
         <label for="floatingEstatusDisabled">Estatus</label>
     </div>
     <div class="botonesAccion">
